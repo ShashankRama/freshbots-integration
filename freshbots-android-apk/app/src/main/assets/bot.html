@@ -5,35 +5,46 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
-    body{
-        overflow: hidden;
-        margin: 0px;
-    }
-    .page-loader {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-image: url(http://cdn.stagfreshbots.com/assets/imgs/g3_icons/loadmoreloader.svg);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 25px;
+    body {
+      overflow: hidden;
+      margin: 0px;
     }
 
-    </style>
+    .page-loader {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url(http://cdn.stagfreshbots.com/assets/imgs/g3_icons/loadmoreloader.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 25px;
+    }
+
+  </style>
 </head>
 <body>
 <div class="page-loader"></div>
 </body>
 
-<script>
+<script type="text/javascript">
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
   (function (d, w, c) {
     var n = d.getElementsByTagName('script')[0], s = d.createElement('script');
     var loaded = false;
     s.id = "spd-busns-spt";
     s.async = "async";
-    s.src = "https://cdn.stagfreshbots.com/assets/share/js/fbotsChat.min.js";
+    s.src = "https://www.stagfreshbots.com/assets/share/js/fbotsChat.js";
     s.setAttribute("data-client", "d1abc92b1d08fbafd2ca690248d85871f61f1494");
-    s.setAttribute("data-bot-hash", "ecc0c70d7185c3647f52ff7a35884198");
+    //s.setAttribute("data-bot-hash", "ecc0c70d7185c3647f52ff7a35884198");
     s.setAttribute("data-bot-version", "1");
     s.setAttribute("data-env", "stag");
     s.setAttribute("data-self-init", "false");
@@ -48,12 +59,20 @@
     }
     n.parentNode.insertBefore(s, n);
   })(document, window, function () {
+
+    var USER_SESSION_TOKEN = getParameterByName('sessionId');
+    var USER_ID = getParameterByName('userId');
+    var USER_NAME = getParameterByName('name');
+    var TXN_ID = getParameterByName('txnId');
+
+    console.log(USER_SESSION_TOKEN + ":" + USER_ID + ":" + USER_NAME + ":" + TXN_ID);
+
     Freshbots.initiateWidget({
       getSessionData: function () {
         return {
-          "token": "SAMPLE_USER_SESSION_TOKEN",
-          "userId": "SAMPLE_USER_ID",
-          "name": "Sample Name",
+          "token": USER_SESSION_TOKEN,
+          "userId": USER_ID,
+          "name": USER_NAME,
           "language": "en"
         };
       },
@@ -68,7 +87,7 @@
       getClientParams: function () {
         return {
           "src": "txn",
-          "xtrnlTcktId": "SAMPLE_TXN_ID" //the txn id here
+          "xtrnlTcktId": TXN_ID //the txn id here
         };
       }
     }, function (successResponse) {
@@ -83,6 +102,7 @@
       Freshbots.showWidget(true);
     }, 0);
   });
+
 </script>
 
 <!--<script>
