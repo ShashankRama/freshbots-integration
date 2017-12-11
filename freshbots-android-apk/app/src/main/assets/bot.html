@@ -31,11 +31,71 @@
     var loaded = false;
     s.id = "spd-busns-spt";
     s.async = "async";
+    s.src = "https://cdn.stagfreshbots.com/assets/share/js/fbotsChat.min.js";
+    s.setAttribute("data-client", "d1abc92b1d08fbafd2ca690248d85871f61f1494");
+    s.setAttribute("data-bot-hash", "ecc0c70d7185c3647f52ff7a35884198");
+    s.setAttribute("data-bot-version", "1");
+    s.setAttribute("data-env", "stag");
+    s.setAttribute("data-self-init", "false");
+    s.setAttribute("data-init-type", "opt");
+    if (c) {
+      s.onreadystatechange = s.onload = function () {
+        if (!loaded) {
+          c();
+        }
+        loaded = true;
+      };
+    }
+    n.parentNode.insertBefore(s, n);
+  })(document, window, function () {
+    Freshbots.initiateWidget({
+      getSessionData: function () {
+        return {
+          "token": "SAMPLE_USER_SESSION_TOKEN",
+          "userId": "SAMPLE_USER_ID",
+          "name": "Sample Name",
+          "language": "en"
+        };
+      },
+      print: function (a, b) {
+        console.log("print called: a:" + a + " b: " + b);
+        return {
+          "a": a,
+          "b": b
+        };
+      },
+      autoInitChat: false,
+      getClientParams: function () {
+        return {
+          "src": "txn",
+          "xtrnlTcktId": "SAMPLE_TXN_ID" //the txn id here
+        };
+      }
+    }, function (successResponse) {
+      console.log("Yay!!");
+      console.log("Calling initiate chat");
+      Freshbots.initiateChat();
+      console.log("Called initiate chat");
+    }, function (errorResponse) {
+      console.log("Alas!!");
+    });
+    setTimeout(function () {
+      Freshbots.showWidget(true);
+    }, 0);
+  });
+</script>
+
+<!--<script>
+  (function (d, w, c) {
+    var n = d.getElementsByTagName('script')[0], s = d.createElement('script');
+    var loaded = false;
+    s.id = "spd-busns-spt";
+    s.async = "async";
     s.src = "https://cdn.intfreshbots.com/assets/share/js/fbotsChat.min.js";
     s.setAttribute("data-client", "715f2d3ca34bb04e722521b7ed981acced86f728");
     s.setAttribute("data-bot-hash", "d30f6d750d71d039137b91558f92e8e721865142");
     s.setAttribute("data-bot-version", "1");
-    s.setAttribute("data-env", "int");
+    s.setAttribute("data-env", "stag");
     s.setAttribute("data-init-type", "opt");
 
     if (c) {
@@ -50,5 +110,6 @@
     n.parentNode.insertBefore(s, n);
   })(document, window);
 
-</script>
+</script>-->
+
 </html>
