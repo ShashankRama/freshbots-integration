@@ -28,7 +28,8 @@ class WebviewActivity : AppCompatActivity() {
         webView.settings.domStorageEnabled = true
         //webView.loadUrl("https://www.intfreshbots.com/chat?clientHash=715f2d3ca34bb04e722521b7ed981acced86f728&botHash=d30f6d750d71d039137b91558f92e8e721865142#open")
         webView.loadUrl("file:///android_asset/bot.html" +
-                "?sessionId=ses123&userId=usr123&name=TestName&txnId=txn123")
+                "?sessionId=ses123&userId=TmDvVWdjmX&name=TestName&txnId=txn123")
+        //Pass relevant values of app user. UserId is used to make API calls.
     }
 
     companion object {

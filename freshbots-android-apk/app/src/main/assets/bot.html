@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Freshbots Chat</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style type="text/css">
+  <title>Freshbots Chat</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
     body {
       overflow: hidden;
       margin: 0px;
@@ -42,11 +42,11 @@
     var loaded = false;
     s.id = "spd-busns-spt";
     s.async = "async";
-    s.src = "https://www.stagfreshbots.com/assets/share/js/fbotsChat.js";
-    s.setAttribute("data-client", "d1abc92b1d08fbafd2ca690248d85871f61f1494");
-    //s.setAttribute("data-bot-hash", "ecc0c70d7185c3647f52ff7a35884198");
+    s.src = "https://www.freshbots.ai/assets/share/js/fbotsChat.min.js";
+    s.setAttribute("data-client", "a39e062c4845d13b00b3e953dd405dbf9e0aadd2");
+    s.setAttribute("data-bot-hash", "9eb0b7b0143d5e67e83b40d377ef1860e6f55e8f");
     s.setAttribute("data-bot-version", "1");
-    s.setAttribute("data-env", "stag");
+    s.setAttribute("data-env", "prod");
     s.setAttribute("data-self-init", "false");
     s.setAttribute("data-init-type", "opt");
     if (c) {
@@ -93,7 +93,7 @@
     }, function (successResponse) {
       console.log("Yay!!");
       console.log("Calling initiate chat");
-      Freshbots.initiateChat();
+      //Freshbots.initiateChat();
       console.log("Called initiate chat");
     }, function (errorResponse) {
       console.log("Alas!!");
